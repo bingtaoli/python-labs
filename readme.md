@@ -27,3 +27,10 @@ urllib2.urlopen(urllib2.Request('%s%s' % (url, request_data)), timeout=10)
 ## 日志类
 
 基于python自带的logging包，使用handler实现按照天或者大小来分裂文件。代码摘自项目组前辈`magic`的封装，觉得挺实用的。见`logger.py`
+
+## 处理日志[知乎笔试题]
+
+阅读了一篇关于知乎笔试题的博客，地址如下：
+`http://blog.csdn.net/liushuaikobe/article/details/9370587`，题目为处理日志。
+
+看了一遍作者的代码，还是想按照自己的风格写，于是就按照自己的风格写了这道题目。见`log_parse_zhihu`目录。
