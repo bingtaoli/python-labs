@@ -28,7 +28,7 @@ urllib2.urlopen(urllib2.Request('%s%s' % (url, request_data)), timeout=10)
 
 基于python自带的logging包，使用handler实现按照天或者大小来分裂文件。代码摘自项目组前辈`magic`的封装，觉得挺实用的。见`logger.py`
 
-## 处理日志[知乎笔试题]
+## 处理日志[知乎write examination]
 
 阅读了一篇关于知乎笔试题的博客，地址如下：
 `http://blog.csdn.net/liushuaikobe/article/details/9370587`，题目为处理日志。
@@ -57,3 +57,36 @@ except:
 finally
 """
 ```
+
+## 系统信号处理函数
+
+系统信号有`SIGTERM`，`SIGINT`等。详细博客`http://orangleliu.info/2016/03/06/python-signal-module-simple-use/`
+
+```py
+import signal
+import time
+import sys
+import os
+
+
+def handle_int(sig, frame):
+    print "get signal: %s, I will quit"%sig
+    sys.exit(0)
+
+
+def handle_hup(sig, frame):
+    print "get signal: %s"%sig
+
+
+if __name__ == "__main__":
+    signal.signal(2, handle_int)
+    signal.signal(1, handle_hup)
+    print "My pid is %s"%os.getpid()
+    while True:
+        time.sleep(3)
+```
+
+## Epoll网络编程
+
+epoll在c语言中使用非常广泛，但绝不是c的专有，python基于epoll也是可以有强大的网络编程能力的。见`epoll_lab`目录。epoll的封装源自`shadowsocks`的代码，eventloop.py封装了epoll、kqueue。程序使用eventloop实现了最基础的网络通信功能，接受请求并且发送hello world后关闭连接。
+
