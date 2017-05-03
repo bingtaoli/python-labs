@@ -6,7 +6,7 @@ python的重试器，参见`retryer.py`，实现重试功能，灵感来自`kazo
 
 ## 多线程
 
-多线程编程，参见threading_labs目录。包括condition使用、helloworld级别多线程使用.
+多线程编程，参见`threading_labs`目录。包括condition使用、简单的多线程例子使用、一些遇需要注意的事项等。目录内单独有文档介绍。
 
 ## 网络请求
 
@@ -34,3 +34,26 @@ urllib2.urlopen(urllib2.Request('%s%s' % (url, request_data)), timeout=10)
 `http://blog.csdn.net/liushuaikobe/article/details/9370587`，题目为处理日志。
 
 看了一遍作者的代码，还是想按照自己的风格写，于是就按照自己的风格写了这道题目。见`log_parse_zhihu`目录。
+
+## try finally
+
+如果在except中加入return，finally会执行吗?
+
+```python
+def main():
+    try:
+        raise Exception
+    except Exception as e:
+        print "except: {}".format(str(e))
+        return
+    finally:
+        print "finally"
+    return
+main()
+
+"""
+执行结果：
+except:
+finally
+"""
+```
